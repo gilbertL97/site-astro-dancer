@@ -1,0 +1,90 @@
+/* Estilos de elementos HTML. Solo tokens, especificidad mínima. */
+
+:where(body) {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--leading-tight);
+  color: var(--color-text);
+  text-wrap: balance;
+}
+
+:where(h1) {
+  font-size: var(--text-4xl);
+}
+
+:where(h2) {
+  font-size: var(--text-3xl);
+}
+
+:where(h3) {
+  font-size: var(--text-2xl);
+}
+
+:where(h4) {
+  font-size: var(--text-xl);
+}
+
+:where(h5) {
+  font-size: var(--text-lg);
+}
+
+:where(h6) {
+  font-size: var(--text-base);
+}
+
+:where(p) {
+  text-wrap: pretty;
+}
+
+:where(a) {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+:where(a):hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Foco siempre visible y con contraste. Sin :where() a propósito:
+   esta regla debe ser difícil de anular por accidente. */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+::selection {
+  color: var(--color-on-primary);
+  background-color: var(--color-primary);
+}
+
+/* Táctil mínimo en controles nativos. */
+:where(button, input[type='submit'], input[type='button']) {
+  min-height: var(--size-touch);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :where(html) {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(*, *::before, *::after) {
+    transition-duration: 0.01ms;
+    animation-duration: 0.01ms;
+  }
+
+  :where(html) {
+    scroll-behavior: auto;
+  }
+}

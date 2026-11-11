@@ -1,0 +1,106 @@
+/* Design tokens. Única fuente de verdad: ningún otro archivo global
+   define colores, espacios, tamaños ni tiempos. Valores provisionales
+   neutros pendientes de la identidad de marca (Fase 5). */
+
+/* Breakpoints documentados (mobile-first, solo cuando clamp()/auto-fit no bastan):
+   --bp-sm: 40rem (640px) · --bp-md: 48rem (768px) · --bp-lg: 64rem (1024px) · --bp-xl: 80rem (1280px) */
+
+:root {
+  color-scheme: light dark;
+
+  /* Tipografía: pilas del sistema hasta servir fuentes propias (Fase 7). */
+  --font-sans:
+    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-display: Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace;
+
+  /* Escala tipográfica fluida. */
+  --text-xs: clamp(0.75rem, 0.73rem + 0.1vw, 0.8125rem);
+  --text-sm: clamp(0.875rem, 0.85rem + 0.12vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.96rem + 0.2vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.35vw, 1.375rem);
+  --text-xl: clamp(1.375rem, 1.25rem + 0.6vw, 1.75rem);
+  --text-2xl: clamp(1.75rem, 1.5rem + 1.2vw, 2.5rem);
+  --text-3xl: clamp(2.25rem, 1.9rem + 1.8vw, 3.25rem);
+  --text-4xl: clamp(2.75rem, 2.2rem + 2.6vw, 4.25rem);
+  --text-5xl: clamp(3.5rem, 2.7rem + 3.8vw, 5.5rem);
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Espaciado. */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4.5rem;
+
+  /* Formas y elevación. */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 12%);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 16%);
+  --shadow-lg: 0 12px 32px rgb(0 0 0 / 20%);
+
+  /* Movimiento y apilado. */
+  --duration-fast: 120ms;
+  --duration-normal: 240ms;
+  --duration-slow: 480ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0, 1);
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-header: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-toast: 50;
+  --z-skip: 60;
+
+  /* Táctil mínimo 44px. */
+  --size-touch: 2.75rem;
+
+  /* Color: el SO decide por defecto vía light-dark(); data-theme lo impone. */
+  --color-bg: light-dark(#faf8f4, #141311);
+  --color-bg-muted: light-dark(#efeae0, #1f1c17);
+  --color-text: light-dark(#1d1a15, #f3efe6);
+  --color-text-muted: light-dark(#5f594d, #b3ac9d);
+  --color-primary: light-dark(#8c3b12, #e08a4e);
+  --color-on-primary: light-dark(#fff8f0, #1c1108);
+  --color-border: light-dark(#d9d1c1, #3a342a);
+  --color-focus: light-dark(#145ecb, #8db4ff);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --color-bg: #faf8f4;
+  --color-bg-muted: #efeae0;
+  --color-text: #1d1a15;
+  --color-text-muted: #5f594d;
+  --color-primary: #8c3b12;
+  --color-on-primary: #fff8f0;
+  --color-border: #d9d1c1;
+  --color-focus: #145ecb;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-bg: #141311;
+  --color-bg-muted: #1f1c17;
+  --color-text: #f3efe6;
+  --color-text-muted: #b3ac9d;
+  --color-primary: #e08a4e;
+  --color-on-primary: #1c1108;
+  --color-border: #3a342a;
+  --color-focus: #8db4ff;
+}

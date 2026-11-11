@@ -1,0 +1,59 @@
+/* Reset moderno mínimo. Todo con especificidad 0 gracias a :where(). */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:where(
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol,
+  dl,
+  dd,
+  figure,
+  blockquote,
+  fieldset
+) {
+  margin: 0;
+}
+
+:where(ul[class], ol[class]) {
+  padding: 0;
+  list-style: none;
+}
+
+:where(fieldset) {
+  padding: 0;
+  border: 0;
+}
+
+:where(img, picture, video, canvas, svg) {
+  display: block;
+  max-width: 100%;
+}
+
+:where(img, video) {
+  height: auto;
+}
+
+:where(input, button, textarea, select) {
+  font: inherit;
+}
+
+:where(button) {
+  touch-action: manipulation;
+  cursor: pointer;
+}
+
+:where(textarea) {
+  min-height: 6em;
+}

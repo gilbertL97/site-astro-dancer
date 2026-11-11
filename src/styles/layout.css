@@ -1,0 +1,57 @@
+/* Primitivas de layout. Mobile-first, propiedades lógicas,
+   Grid fluido antes que media queries. */
+
+.container {
+  width: min(100% - var(--space-lg) * 2, 72rem);
+  margin-inline: auto;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack > * + * {
+  margin-block-start: var(--stack-space, var(--space-md));
+}
+
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-md);
+}
+
+.sidebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.sidebar > :first-child {
+  flex-grow: 1;
+  flex-basis: var(--sidebar-width, 18rem);
+}
+
+.sidebar > :last-child {
+  flex-grow: 999;
+  flex-basis: 0;
+  min-width: 60%;
+}
+
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.switcher > * {
+  flex-grow: 1;
+  flex-basis: calc((40rem - 100%) * 999);
+}

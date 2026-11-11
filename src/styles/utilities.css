@@ -1,0 +1,36 @@
+/* Utilidades globales. Pocas y estables; nada más vive aquí. */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: var(--space-md);
+  top: var(--space-md);
+  z-index: var(--z-skip);
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+}
+
+.skip-link:not(:focus-visible) {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.flow > * + * {
+  margin-block-start: var(--flow-space, var(--space-md));
+}
+
+.text-center {
+  text-align: center;
+}
