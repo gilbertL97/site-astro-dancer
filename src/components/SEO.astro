@@ -1,0 +1,98 @@
+---
+import type { Locale } from '../i18n/routing';
+import { useTranslations } from '../i18n/utils';
+import {
+  alternateOgLocales,
+  getAlternateLinks,
+  ogLocale,
+  resolveSite,
+  toAbsolute,
+} from '../lib/seo';
+
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+  pathname: string;
+  breadcrumbs?: BreadcrumbItem[];
+  noindex?: boolean;
+}
+
+const {
+  locale,
+  title,
+  description,
+  pathname,
+  breadcrumbs = [],
+  noindex = false,
+} = Astro.props;
+const t = useTranslations(locale);
+const site = resolveSite(Astro.site);
+const canonical = toAbsolute(site, pathname);
+const alternates = getAlternateLinks(site, pathname);
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: t.siteName,
+  url: site.href,
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: t.siteName,
+  url: site.href,
+  inLanguage: locale,
+};
+
+const breadcrumbList = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    item: toAbsolute(site, item.url),
+  })),
+};
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+{noindex && <meta name="robots" content="noindex" />}
+{
+  alternates.map((link) => (
+    <link rel="alternate" hreflang={link.hreflang} href={link.href} />
+  ))
+}
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={t.siteName} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={ogLocale(locale)} />
+{
+  alternateOgLocales(locale).map((alternate) => (
+    <meta property="og:locale:alternate" content={alternate} />
+  ))
+}
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<script type="application/ld+json" set:html={JSON.stringify(organization)} />
+<script type="application/ld+json" set:html={JSON.stringify(website)} />
+{
+  breadcrumbs.length > 0 && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(breadcrumbList)}
+    />
+  )
+}

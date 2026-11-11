@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { useTranslations } from '../../i18n/utils';
+import { getLocaleUrl, useTranslations } from '../../i18n/utils';
 
 const t = useTranslations('ca');
 ---
@@ -9,6 +9,7 @@ const t = useTranslations('ca');
   locale="ca"
   title={`${t.siteName} — ${t.tagline}`}
   description={t.hero.subtitle}
+  breadcrumbs={[{ name: t.nav.home, url: getLocaleUrl('ca', 'home') }]}
 >
   <div class="container">
     <div class="stack">

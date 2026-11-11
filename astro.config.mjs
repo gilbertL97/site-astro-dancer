@@ -25,6 +25,8 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
+      // La 404 no pertenece al sitemap.
+      filter: (page) => !page.endsWith('/404/'),
       i18n: {
         defaultLocale: 'es',
         locales: {
