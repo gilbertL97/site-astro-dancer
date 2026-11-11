@@ -1,0 +1,113 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    name: Check + Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npx eslint .
+      - run: npx prettier --check .
+      - run: npx stylelint "src/**/*.css" --allow-empty-input
+      - run: npm audit --omit=dev --audit-level=moderate
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+
+  links:
+    name: Broken links
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress "dist/**/*.html"
+
+  lighthouse:
+    name: Lighthouse CI
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: npx -y @lhci/cli@0.14 autorun --config=./lighthouserc.cjs
+
+  a11y:
+    name: Accessibility (pa11y)
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+      - run: |
+          npx -y serve@14 dist -l 4173 &
+          SERVER_PID=$!
+          sleep 3
+          npx -y pa11y-ci@3 --config .pa11yci.json
+          kill $SERVER_PID
+
+  deploy:
+    name: Deploy to Cloudflare Pages
+    if: github.ref == 'refs/heads/main'
+    needs: [quality, build, links, lighthouse, a11y]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      # TODO (Fase 9): crear los secrets CLOUDFLARE_API_TOKEN y
+      # CLOUDFLARE_ACCOUNT_ID y ajustar --project-name al proyecto real.
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=oscar-page --commit-dirty=true

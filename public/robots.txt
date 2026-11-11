@@ -1,0 +1,5 @@
+# TODO (Fase 4): dominio final. Generar desde el `site` de astro.config.mjs si se dinamiza.
+User-agent: *
+Allow: /
+
+Sitemap: https://example.com/sitemap-index.xml

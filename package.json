@@ -2,16 +2,52 @@
   "name": "oscar-page",
   "type": "module",
   "version": "0.0.1",
+  "private": true,
   "engines": {
-    "node": ">=22.23.4"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "lint": "eslint . && prettier --check . && stylelint \"src/**/*.css\" --allow-empty-input",
+    "format": "prettier --write .",
+    "prepare": "husky"
   },
   "dependencies": {
+    "@astrojs/mdx": "^8.1.4",
+    "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.4.10"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@eslint/js": "^9.0.0",
+    "@types/node": "^22.0.0",
+    "eslint": "^9.0.0",
+    "eslint-plugin-astro": "^1.0.0",
+    "globals": "^17.14.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
+    "prettier-plugin-astro": "^0.14.0",
+    "stylelint": "^16.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.0.0"
+  },
+  "lint-staged": {
+    "*.{js,mjs,cjs,ts,astro}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.css": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   }
 }
