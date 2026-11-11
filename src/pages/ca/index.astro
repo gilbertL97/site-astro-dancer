@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/Card.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Hero from '../../components/Hero.astro';
 import { getLocaleUrl, useTranslations } from '../../i18n/utils';
@@ -10,7 +11,7 @@ const t = useTranslations('ca');
 <BaseLayout
   locale="ca"
   title={`${t.siteName} — ${t.tagline}`}
-  description={t.hero.subtitle}
+  description={t.metaDescription}
   breadcrumbs={[{ name: t.nav.home, url: getLocaleUrl('ca', 'home') }]}
 >
   <Hero
@@ -18,5 +19,44 @@ const t = useTranslations('ca');
     title={t.hero.title}
     subtitle={t.hero.subtitle}
   />
+  <section aria-labelledby="bio">
+    <div class="container">
+      <div class="stack">
+        <h2 id="bio">{t.about.title}</h2>
+        {t.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </div>
+  </section>
+  <section aria-labelledby="estilos">
+    <div class="container">
+      <div class="stack">
+        <h2 id="estilos">{t.dances.title}</h2>
+        <div class="grid">
+          {t.dances.items.map((dance) => <Card title={dance} />)}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section aria-labelledby="workshop">
+    <div class="container">
+      <div class="stack">
+        <h2 id="workshop">{t.workshop.title}</h2>
+        <p>{t.workshop.text}</p>
+        <p>
+          <a href="#contact">{t.workshop.cta}</a>
+        </p>
+      </div>
+    </div>
+  </section>
+  <section aria-labelledby="tutoriales">
+    <div class="container">
+      <div class="stack">
+        <h2 id="tutoriales">{t.tutorials.title}</h2>
+        <div class="grid">
+          {t.tutorials.items.map((item) => <Card title={item.title} />)}
+        </div>
+      </div>
+    </div>
+  </section>
   <ContactForm locale="ca" />
 </BaseLayout>
