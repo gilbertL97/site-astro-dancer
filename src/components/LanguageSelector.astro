@@ -1,0 +1,59 @@
+---
+import { locales, type Locale } from '../i18n/routing';
+import { getEquivalentUrl, useTranslations } from '../i18n/utils';
+
+interface Props {
+  currentLocale: Locale;
+  currentPath: string;
+}
+
+const { currentLocale, currentPath } = Astro.props;
+const t = useTranslations(currentLocale);
+---
+
+<nav aria-label={t.languageSelectorLabel} class="language-selector">
+  <ul class="language-selector__list">
+    {
+      locales.map((locale) => (
+        <li>
+          <a
+            class="language-selector__link"
+            href={getEquivalentUrl(currentPath, currentLocale, locale)}
+            hreflang={locale}
+            lang={locale}
+            aria-current={locale === currentLocale ? 'page' : undefined}
+            data-active={locale === currentLocale}
+          >
+            {t.languageNames[locale]}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  @layer components {
+    .language-selector__list {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      gap: var(--space-sm);
+    }
+
+    .language-selector__link {
+      display: inline-flex;
+      align-items: center;
+      min-height: var(--size-touch);
+      padding-inline: var(--space-sm);
+    }
+
+    .language-selector__link[data-active='true'] {
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      text-decoration: none;
+    }
+  }
+</style>

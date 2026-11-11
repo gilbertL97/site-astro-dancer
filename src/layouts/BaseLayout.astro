@@ -1,0 +1,40 @@
+---
+import type { Locale } from '../i18n/routing';
+import { useTranslations } from '../i18n/utils';
+import LanguageSelector from '../components/LanguageSelector.astro';
+import SkipLink from '../components/SkipLink.astro';
+import '../styles/index.css';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description: string;
+}
+
+const { locale, title, description } = Astro.props;
+const t = useTranslations(locale);
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<!-- dir="ltr" fijo: es/ca/en son LTR. Sin locales RTL en el alcance. -->
+<html lang={locale} dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <!-- El componente SEO.astro (Fase 4) añadirá canonical, hreflang, OG y JSON-LD. -->
+    <title>{title}</title>
+  </head>
+  <body>
+    <SkipLink label={t.skipLink} />
+    <!-- Colocado aquí de forma temporal; el Header de la Fase 5 lo reubicará. -->
+    <LanguageSelector currentLocale={locale} currentPath={currentPath} />
+    <main id="main-content">
+      <slot />
+    </main>
+  </body>
+</html>

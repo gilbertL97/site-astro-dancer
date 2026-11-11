@@ -3,5 +3,9 @@
     "standard": "WCAG2AA",
     "timeout": 30000
   },
-  "urls": ["http://localhost:4173/"]
+  "urls": [
+    "http://localhost:4173/",
+    "http://localhost:4173/ca/",
+    "http://localhost:4173/en/"
+  ]
 }
