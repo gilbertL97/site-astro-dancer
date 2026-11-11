@@ -1,0 +1,47 @@
+---
+import type { Locale } from '../i18n/routing';
+import { getLocaleUrl, useTranslations } from '../i18n/utils';
+import LanguageSelector from './LanguageSelector.astro';
+import Nav from './Nav.astro';
+
+interface Props {
+  currentLocale: Locale;
+  currentPath: string;
+}
+
+const { currentLocale, currentPath } = Astro.props;
+const t = useTranslations(currentLocale);
+---
+
+<!-- TODO(Diseño): estructura temporal; el diseño definitivo la sustituirá. -->
+<header class="header">
+  <div class="container cluster header__inner">
+    <a class="header__brand" href={getLocaleUrl(currentLocale, 'home')}>
+      {t.siteName}
+    </a>
+    <Nav currentLocale={currentLocale} currentPath={currentPath} />
+    <LanguageSelector currentLocale={currentLocale} currentPath={currentPath} />
+  </div>
+</header>
+
+<style>
+  @layer components {
+    .header {
+      border-block-end: 1px solid var(--color-border);
+    }
+
+    .header__inner {
+      justify-content: space-between;
+      padding-block: var(--space-sm);
+      gap: var(--space-md);
+    }
+
+    .header__brand {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      text-decoration: none;
+    }
+  }
+</style>

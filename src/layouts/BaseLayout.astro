@@ -1,7 +1,8 @@
 ---
 import type { Locale } from '../i18n/routing';
 import { useTranslations } from '../i18n/utils';
-import LanguageSelector from '../components/LanguageSelector.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 import SEO, { type BreadcrumbItem } from '../components/SEO.astro';
 import SkipLink from '../components/SkipLink.astro';
 import '../styles/index.css';
@@ -46,10 +47,10 @@ const currentPath = Astro.url.pathname;
   </head>
   <body>
     <SkipLink label={t.skipLink} />
-    <!-- Colocado aquí de forma temporal; el Header de la Fase 5 lo reubicará. -->
-    <LanguageSelector currentLocale={locale} currentPath={currentPath} />
+    <Header currentLocale={locale} currentPath={currentPath} />
     <main id="main-content">
       <slot />
     </main>
+    <Footer currentLocale={locale} />
   </body>
 </html>

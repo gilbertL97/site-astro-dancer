@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLocaleUrl, useTranslations } from '../../i18n/utils';
+
+const t = useTranslations('ca');
+const title = `${t.legal.notice} — ${t.siteName}`;
+---
+
+<BaseLayout
+  locale="ca"
+  title={title}
+  description={title}
+  breadcrumbs={[
+    { name: t.nav.home, url: getLocaleUrl('ca', 'home') },
+    { name: t.legal.notice, url: getLocaleUrl('ca', 'legal') },
+  ]}
+>
+  <div class="container">
+    <div class="stack">
+      <h1>{t.legal.notice}</h1>
+      <!-- TODO(Diseño): texto legal definitivo. -->
+      <p>{t.pendingCopy}</p>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,49 @@
+---
+interface Props {
+  title: string;
+  text?: string;
+  href?: string;
+  featured?: boolean;
+}
+
+const { title, text, href, featured = false } = Astro.props;
+---
+
+<!-- TODO(Diseño): sin uso real hasta que llegue el diseño/contenido. -->
+<article class="card" data-featured={featured}>
+  <h3 class="card__title">
+    {
+      href ? (
+        <a class="card__link" href={href}>
+          {title}
+        </a>
+      ) : (
+        title
+      )
+    }
+  </h3>
+  {text && <p class="card__text">{text}</p>}
+</article>
+
+<style>
+  @layer components {
+    .card {
+      padding: var(--space-lg);
+      background-color: var(--color-bg-muted);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+    }
+
+    .card[data-featured='true'] {
+      border-color: var(--color-primary);
+    }
+
+    .card__title {
+      font-size: var(--text-xl);
+    }
+
+    .card__text {
+      color: var(--color-text-muted);
+    }
+  }
+</style>

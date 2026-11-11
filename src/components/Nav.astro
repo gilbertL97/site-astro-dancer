@@ -1,0 +1,40 @@
+---
+import type { Locale } from '../i18n/routing';
+import { getLocaleUrl, useTranslations } from '../i18n/utils';
+
+interface Props {
+  currentLocale: Locale;
+  currentPath: string;
+}
+
+const { currentLocale, currentPath } = Astro.props;
+const t = useTranslations(currentLocale);
+const homeUrl = getLocaleUrl(currentLocale, 'home');
+---
+
+<!-- TODO(Diseño): solo el inicio por ahora; las secciones llegarán con el diseño. -->
+<nav aria-label={t.nav.label} class="nav">
+  <a
+    class="nav__link"
+    href={homeUrl}
+    aria-current={currentPath === homeUrl ? 'page' : undefined}
+  >
+    {t.nav.home}
+  </a>
+</nav>
+
+<style>
+  @layer components {
+    .nav__link {
+      display: inline-flex;
+      align-items: center;
+      min-height: var(--size-touch);
+    }
+
+    .nav__link[aria-current='page'] {
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text);
+      text-decoration: none;
+    }
+  }
+</style>

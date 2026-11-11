@@ -6,6 +6,15 @@
   "urls": [
     "http://localhost:4173/",
     "http://localhost:4173/ca/",
-    "http://localhost:4173/en/"
+    "http://localhost:4173/en/",
+    "http://localhost:4173/privacidad/",
+    "http://localhost:4173/cookies/",
+    "http://localhost:4173/aviso-legal/",
+    "http://localhost:4173/ca/privacitat/",
+    "http://localhost:4173/ca/cookies/",
+    "http://localhost:4173/ca/avis-legal/",
+    "http://localhost:4173/en/privacy/",
+    "http://localhost:4173/en/cookies/",
+    "http://localhost:4173/en/legal-notice/"
   ]
 }
