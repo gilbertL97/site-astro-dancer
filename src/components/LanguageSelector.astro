@@ -9,31 +9,84 @@ interface Props {
 
 const { currentLocale, currentPath } = Astro.props;
 const t = useTranslations(currentLocale);
+
+// Las banderas en un <select> nativo solo pueden ser emoji.
+// El catalán no tiene emoji de bandera estándar: se muestra sin ella.
+const FLAGS: Record<Locale, string> = { es: '🇪🇸', ca: '', en: '🇬🇧' };
+const selectId = 'language-select';
 ---
 
-<nav aria-label={t.languageSelectorLabel} class="language-selector">
-  <ul class="language-selector__list">
+<form class="language-selector" data-language-selector action="#">
+  <label class="visually-hidden" for={selectId}>
+    {t.languageSelectorLabel}
+  </label>
+  <select id={selectId} class="language-selector__select" autocomplete="off">
     {
       locales.map((locale) => (
-        <li>
-          <a
-            class="language-selector__link"
-            href={getEquivalentUrl(currentPath, currentLocale, locale)}
-            hreflang={locale}
-            lang={locale}
-            aria-current={locale === currentLocale ? 'page' : undefined}
-            data-active={locale === currentLocale}
-          >
-            {t.languageNames[locale]}
-          </a>
-        </li>
+        <option
+          value={getEquivalentUrl(currentPath, currentLocale, locale)}
+          selected={locale === currentLocale}
+          lang={locale}
+        >
+          {(FLAGS[locale] ? `${FLAGS[locale]} ` : '') + t.languageNames[locale]}
+        </option>
       ))
     }
-  </ul>
-</nav>
+  </select>
+  <noscript>
+    <ul class="language-selector__list">
+      {
+        locales.map((locale) => (
+          <li>
+            <a
+              class="language-selector__link"
+              href={getEquivalentUrl(currentPath, currentLocale, locale)}
+              hreflang={locale}
+              lang={locale}
+              aria-current={locale === currentLocale ? 'page' : undefined}
+              data-active={locale === currentLocale}
+            >
+              {t.languageNames[locale]}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </noscript>
+</form>
+
+<script>
+  // TODO(Seguridad/Fase 8): al endurecer la CSP, añadir el hash de este script.
+  // Navegación del <select>: sin JS el formulario no puede navegar,
+  // por eso existe el <noscript> con enlaces equivalentes.
+  const select = document.getElementById('language-select');
+  if (select instanceof HTMLSelectElement) {
+    select.addEventListener('change', () => {
+      if (select.value) {
+        window.location.assign(select.value);
+      }
+    });
+  }
+</script>
 
 <style>
   @layer components {
+    .language-selector {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .language-selector__select {
+      min-height: var(--size-touch);
+      padding-inline: var(--space-sm);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      cursor: pointer;
+      background-color: var(--color-bg-muted);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
+    }
+
     .language-selector__list {
       display: flex;
       flex-wrap: wrap;
