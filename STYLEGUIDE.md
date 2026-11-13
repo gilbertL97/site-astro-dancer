@@ -41,7 +41,7 @@ Los estilos globales viven únicamente en `src/styles/`; nada global en componen
 - **Sombras**: sin dropshadows sobre tonos oscuros; `--shadow-glow`
   (halo violeta) para foco interactivo.
 - **Tiempos**: `--duration-fast|normal|slow` + `--ease-out`.
-- **Z-index con nombre**: `--z-base|sticky|header|overlay|modal|toast|skip`.
+- **Z-index con nombre**: `--z-behind|base|sticky|header|overlay|modal|toast|skip`.
 - **Táctil**: `--size-touch: 2.75rem` (44px).
 - **Breakpoints** (documentados, solo cuando el fluido no basta):
   `40rem` (640px) · `48rem` (768px) · `64rem` (1024px) · `80rem` (1280px).

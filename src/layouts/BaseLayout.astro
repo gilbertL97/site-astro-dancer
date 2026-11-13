@@ -46,6 +46,7 @@ const currentPath = Astro.url.pathname;
     />
   </head>
   <body>
+    <div class="ambient" aria-hidden="true"></div>
     <SkipLink label={t.skipLink} />
     <Header currentLocale={locale} currentPath={currentPath} />
     <main id="main-content">
@@ -54,3 +55,19 @@ const currentPath = Astro.url.pathname;
     <Footer currentLocale={locale} />
   </body>
 </html>
+
+<style>
+  @layer components {
+    .ambient {
+      position: fixed;
+      inset: 0;
+      z-index: var(--z-behind);
+      pointer-events: none;
+      background: radial-gradient(
+        circle at 50% 20%,
+        color-mix(in srgb, var(--color-accent) 14%, transparent),
+        transparent 60%
+      );
+    }
+  }
+</style>

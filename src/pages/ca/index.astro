@@ -36,7 +36,11 @@ const t = useTranslations('ca');
       <div class="stack">
         <h2 id="estilos">{t.dances.title}</h2>
         <div class="grid">
-          {t.dances.items.map((dance) => <Card title={dance} />)}
+          {
+            t.dances.items.map((dance) => (
+              <Card title={dance} badge={dance.charAt(0)} />
+            ))
+          }
         </div>
       </div>
     </div>
@@ -57,7 +61,11 @@ const t = useTranslations('ca');
       <div class="stack">
         <h2 id="tutoriales">{t.tutorials.title}</h2>
         <div class="grid">
-          {t.tutorials.items.map((item) => <Card title={item.title} />)}
+          {
+            t.tutorials.items.map((item) => (
+              <Card title={item.title} badge={item.title.charAt(0)} />
+            ))
+          }
         </div>
       </div>
     </div>

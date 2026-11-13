@@ -4,12 +4,20 @@ interface Props {
   text?: string;
   href?: string;
   featured?: boolean;
+  badge?: string;
 }
 
-const { title, text, href, featured = false } = Astro.props;
+const { title, text, href, featured = false, badge } = Astro.props;
 ---
 
 <article class="card" data-featured={featured}>
+  {
+    badge && (
+      <span class="card__badge" aria-hidden="true">
+        {badge}
+      </span>
+    )
+  }
   <h3 class="card__title">
     {
       href ? (
@@ -40,6 +48,21 @@ const { title, text, href, featured = false } = Astro.props;
 
     .card[data-featured='true'] {
       border-color: var(--color-primary);
+    }
+
+    .card__badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--size-touch);
+      height: var(--size-touch);
+      margin-block-end: var(--space-sm);
+      font-family: var(--font-display);
+      font-weight: var(--font-weight-extrabold);
+      color: var(--color-primary);
+      background-color: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
     }
 
     .card__title {
