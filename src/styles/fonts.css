@@ -1,0 +1,66 @@
+/* Fuentes autoalojadas, subconjunto latino, font-display: swap.
+   Sin size-adjust por ahora: los valores se medirán en la Fase 7
+   para no empeorar el CLS con aproximaciones. */
+@font-face {
+  font-family: Syne;
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/syne-700.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Syne;
+  font-style: normal;
+  font-weight: 800;
+  src: url('/fonts/syne-800.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/jakarta-400.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/jakarta-500.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/jakarta-600.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/jakarta-700.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/grotesk-500.woff2') format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/grotesk-700.woff2') format('woff2');
+  font-display: swap;
+}

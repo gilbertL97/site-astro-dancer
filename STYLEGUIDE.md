@@ -22,9 +22,11 @@ Los estilos globales viven únicamente en `src/styles/`; nada global en componen
 ## Tokens (`tokens.css`)
 
 - **Color** (`--color-bg`, `--color-bg-muted`, `--color-text`, `--color-text-muted`,
-  `--color-primary`, `--color-on-primary`, `--color-border`, `--color-focus`):
-  semánticos, nunca literales fuera de este archivo. Valores provisionales
-  pendientes de la identidad de marca.
+  `--color-primary`, `--color-on-primary`, `--color-border`, `--color-focus`,
+  `--color-accent`, `--color-highlight`): semánticos, nunca literales fuera
+  de este archivo. Tema oscuro por defecto (`color-scheme: dark light` con
+  `light-dark()`); `data-theme="light|dark"` lo impone. Sin magentas fuertes:
+  primario cian, acento violeta, ámbar solo puntual.
 - **Claro/oscuro**: `color-scheme: light dark` + `light-dark()`: el SO decide por
   defecto. `data-theme="light|dark"` en `<html>` impone un tema manualmente.
 - **Tipo fluida**: `--text-xs` … `--text-5xl` con `clamp()`; interlineados
@@ -93,5 +95,11 @@ Los estilos globales viven únicamente en `src/styles/`; nada global en componen
 
 ## Fuentes
 
-Pilas del sistema hasta la Fase 7, donde se autoalojarán las definitivas
-con `font-display: swap` y `size-adjust` para evitar CLS.
+Autoalojadas en `public/fonts/` (subconjunto latino, `font-display: swap`):
+
+- Display: Syne 700/800 (`--font-display`).
+- Texto: Plus Jakarta Sans 400/500/600/700 (`--font-sans`).
+- Mono/etiquetas: Space Grotesk 500/700 (`--font-mono`).
+
+`src/styles/fonts.css` solo declara `@font-face` (sin capa). Sin `size-adjust`
+por ahora: se medirá en la Fase 7 para no empeorar el CLS con aproximaciones.

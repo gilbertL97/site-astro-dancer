@@ -10,25 +10,49 @@ interface Props {
 const { currentLocale, currentPath } = Astro.props;
 const t = useTranslations(currentLocale);
 const homeUrl = getLocaleUrl(currentLocale, 'home');
+const links = [
+  { label: t.nav.home, url: homeUrl },
+  { label: t.about.title, url: `${homeUrl}#bio` },
+  { label: t.dances.title, url: `${homeUrl}#estilos` },
+  { label: t.workshop.title, url: `${homeUrl}#workshop` },
+  { label: t.tutorials.title, url: `${homeUrl}#tutoriales` },
+  { label: t.form.title, url: `${homeUrl}#contact` },
+];
 ---
 
-<!-- TODO(Diseño): solo el inicio por ahora; las secciones llegarán con el diseño. -->
 <nav aria-label={t.nav.label} class="nav">
-  <a
-    class="nav__link"
-    href={homeUrl}
-    aria-current={currentPath === homeUrl ? 'page' : undefined}
-  >
-    {t.nav.home}
-  </a>
+  {
+    links.map((link) => (
+      <a
+        class="nav__link"
+        href={link.url}
+        aria-current={currentPath === link.url ? 'page' : undefined}
+      >
+        {link.label}
+      </a>
+    ))
+  }
 </nav>
 
 <style>
   @layer components {
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs) var(--space-sm);
+    }
+
     .nav__link {
       display: inline-flex;
       align-items: center;
       min-height: var(--size-touch);
+      padding-inline: var(--space-sm);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+    }
+
+    .nav__link:hover {
+      color: var(--color-text);
     }
 
     .nav__link[aria-current='page'] {

@@ -1,19 +1,24 @@
 /* Design tokens. Única fuente de verdad: ningún otro archivo global
-   define colores, espacios, tamaños ni tiempos. Valores provisionales
-   neutros pendientes de la identidad de marca (Fase 5). */
+   define colores, espacios, tamaños ni tiempos.
+   Tema oscuro por defecto (color-scheme: dark light + light-dark());
+   data-theme="light|dark" lo impone. Paleta tecnológica sobre negro,
+   sin magentas fuertes: cian primario, violeta de acento, ámbar puntual. */
 
 /* Breakpoints documentados (mobile-first, solo cuando clamp()/auto-fit no bastan):
    --bp-sm: 40rem (640px) · --bp-md: 48rem (768px) · --bp-lg: 64rem (1024px) · --bp-xl: 80rem (1280px) */
 
 :root {
-  color-scheme: light dark;
+  color-scheme: dark light;
 
-  /* Tipografía: pilas del sistema hasta servir fuentes propias (Fase 7). */
+  /* Tipografía autoalojada (src/styles/fonts.css), pilas de reserva del sistema. */
   --font-sans:
-    system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+    'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  --font-display:
+    'Syne', 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI',
     sans-serif;
-  --font-display: Georgia, 'Times New Roman', serif;
-  --font-mono: ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace;
+  --font-mono:
+    'Space Grotesk', ui-monospace, 'Cascadia Mono', Menlo, Consolas, monospace;
 
   /* Escala tipográfica fluida. */
   --text-xs: clamp(0.75rem, 0.73rem + 0.1vw, 0.8125rem);
@@ -33,6 +38,7 @@
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
 
   /* Espaciado. */
   --space-xs: 0.25rem;
@@ -68,39 +74,45 @@
   /* Táctil mínimo 44px. */
   --size-touch: 2.75rem;
 
-  /* Color: el SO decide por defecto vía light-dark(); data-theme lo impone. */
-  --color-bg: light-dark(#faf8f4, #141311);
-  --color-bg-muted: light-dark(#efeae0, #1f1c17);
-  --color-text: light-dark(#1d1a15, #f3efe6);
-  --color-text-muted: light-dark(#5f594d, #b3ac9d);
-  --color-primary: light-dark(#8c3b12, #e08a4e);
-  --color-on-primary: light-dark(#fff8f0, #1c1108);
-  --color-border: light-dark(#d9d1c1, #3a342a);
-  --color-focus: light-dark(#145ecb, #8db4ff);
+  /* Color: oscuro por defecto; light-dark() resuelve según color-scheme. */
+  --color-bg: light-dark(#eef1f7, #08080c);
+  --color-bg-muted: light-dark(#fff, #101019);
+  --color-text: light-dark(#14161c, #e9ecf3);
+  --color-text-muted: light-dark(#5a6072, #a3a9bd);
+  --color-primary: light-dark(#0369a1, #38bdf8);
+  --color-on-primary: light-dark(#fff, #04121c);
+  --color-border: light-dark(#d8dce6, #23232f);
+  --color-focus: light-dark(#0284c7, #7dd3fc);
+  --color-accent: light-dark(#7e22ce, #a855f7);
+  --color-highlight: light-dark(#b45309, #f59e0b);
 }
 
 :root[data-theme='light'] {
   color-scheme: light;
 
-  --color-bg: #faf8f4;
-  --color-bg-muted: #efeae0;
-  --color-text: #1d1a15;
-  --color-text-muted: #5f594d;
-  --color-primary: #8c3b12;
-  --color-on-primary: #fff8f0;
-  --color-border: #d9d1c1;
-  --color-focus: #145ecb;
+  --color-bg: #eef1f7;
+  --color-bg-muted: #fff;
+  --color-text: #14161c;
+  --color-text-muted: #5a6072;
+  --color-primary: #0369a1;
+  --color-on-primary: #fff;
+  --color-border: #d8dce6;
+  --color-focus: #0284c7;
+  --color-accent: #7e22ce;
+  --color-highlight: #b45309;
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --color-bg: #141311;
-  --color-bg-muted: #1f1c17;
-  --color-text: #f3efe6;
-  --color-text-muted: #b3ac9d;
-  --color-primary: #e08a4e;
-  --color-on-primary: #1c1108;
-  --color-border: #3a342a;
-  --color-focus: #8db4ff;
+  --color-bg: #08080c;
+  --color-bg-muted: #101019;
+  --color-text: #e9ecf3;
+  --color-text-muted: #a3a9bd;
+  --color-primary: #38bdf8;
+  --color-on-primary: #04121c;
+  --color-border: #23232f;
+  --color-focus: #7dd3fc;
+  --color-accent: #a855f7;
+  --color-highlight: #f59e0b;
 }

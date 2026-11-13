@@ -40,7 +40,7 @@ const t = useTranslations(currentLocale);
       margin: 0;
       padding: 0;
       list-style: none;
-      gap: var(--space-sm);
+      gap: var(--space-xs);
     }
 
     .language-selector__link {
@@ -48,12 +48,17 @@ const t = useTranslations(currentLocale);
       align-items: center;
       min-height: var(--size-touch);
       padding-inline: var(--space-sm);
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      border: 1px solid transparent;
+      border-radius: var(--radius-pill);
     }
 
     .language-selector__link[data-active='true'] {
       font-weight: var(--font-weight-bold);
       color: var(--color-text);
       text-decoration: none;
+      border-color: var(--color-primary);
     }
   }
 </style>

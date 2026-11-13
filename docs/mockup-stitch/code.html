@@ -1,0 +1,403 @@
+<!DOCTYPE html><html lang="es" class="dark"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LMENT DANCE — Kinetic Movement &amp; Dance Performance</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            syne: ['Syne', 'sans-serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            mono: ['Space Grotesk', 'monospace'],
+          },
+          colors: {
+            brand: {
+              cyan: '#38bdf8',
+              violet: '#a855f7',
+              amber: '#f59e0b',
+              dark: '#08080c',
+              surface: '#0f0f17',
+              border: '#1f1f2e'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Letter clipping masks */
+    .letter-mask {
+      display: inline-block;
+      font-family: 'Syne', sans-serif;
+      font-weight: 900;
+      text-transform: uppercase;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: cover;
+      background-position: center;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: saturate(1.2) contrast(1.1);
+      position: relative;
+    }
+
+    .letter-mask:hover {
+      transform: translateY(-8px) scale(1.05);
+      filter: saturate(1.6) contrast(1.2) brightness(1.1);
+      text-shadow: 0 0 35px rgba(56, 189, 248, 0.4);
+    }
+
+    /* Assigning each photo uniquely to each letter */
+    .char-L1 { background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCi2dLVG0MpC-KQHpOVJlCOtwCOsPHB0UiU7wFWMAFIbQ7xVey8C1p5Pb_7rRFfXkc9ojrwMptzDaOoOSqUMf53oiMH4LEsN9EQIquhq74E3OD8iRU9COlf_D9OIcKUInRRHnKQFTAokAki3TwcEB4QYIx6b1Pr0zNF9XhxvQD3aqzPoDiYPp-f-mRcuySNZbIcgkgPljdSAAJ7tt6H4SnaxXUhwRGwzS8H6yaVlY_6-47_sMSkc98i'); background-position: 25% 40%; }
+    .char-M  { background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBFnmfJnSMsRUINODdLH2umIABvYoXWVfEytbz9rNUNKz2hwCrFjl0L6TgeASBjo73OywfFqbbBZibIloP2xFC4I5toyu1JxFsY1YqtfsIVdhGr23OZlsGZ_9L3hOAvP5AbzIVqRaF2Wq1p7pTtBQGuZrDxKS1fLc5awAzGnpFgFmk8h42o7xPNEUvtCaKfR69nL7ASZR7IBZ6mOJaE8S7ZGfLiGD2QyaNE3VxyWa3WvrsTtUm9HmZ'); background-position: 50% 50%; }
+    .char-E  { background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCWqg96iMQQh7X-sKoVlAVq78hUKiZXHFKabKhF8gvfYDv3H7IdhpJiOUzKRicSi-0rEGfKZViQO8TcvpaOBR2bprWSvRs12RvAuSuadlge-iCiKZX459Qp77-OWgODmkiiJTzNia_Eg_RR6HSqIZlLNsP1nZxr8gHqrxzBcQtEJzRKflFfKWB2xKhasEB2EHzDPymophVSu38mhFP6jfGiFRPsi7tCtDrnBYa7GPpaRWRJymJcvaLu'); background-position: 30% 60%; }
+    .char-N  { background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8tJ4NSBnTSEgaWzWkcZuF-bA_W2R4dWklNLcJaQPLn3GqNUd63Vl7a41ApMMNXejjrYrhSPcTdiXbPFeWXuMa-uX9BJPEP2jfD-ACrWUUQaGOHKbkUgIU8A1WleuokGLFz5EAo0XaK_L5Fd7QgVaDZCAF8lakLnUIwPgmByApXRxjYHZY2BdGF-tjumq9byUAC0c6p2Aa0BwZTkL6Kx_Iv-hHaBIXjeoNOsDNIy5_qb-ZF9DtVLgx'); background-position: 45% 30%; }
+    .char-T  { background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDTDhW2d6GN252D71gBTWsyNf_mWc47ZBzZjMi_yq5587_bDEO2ySBs9S_mntAb4HnubBvopV8adwc6TcO9euoxQeVTUqw8fRZDbsa_QosGf1zmGX-H71xUFkIHwKkxtYQyZqGM26izpVxgeggXITHXzK4iHqivwyWk3yvZSP5yrItsmM3hVVNF8Am7EeG946AbGk9E5vX4ppPFr5IBf9TTOWG3EZa0-rcdMfxPMOn3prYGSiIuAGOD'); background-position: 60% 45%; }
+
+    .char-D  { background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCi2dLVG0MpC-KQHpOVJlCOtwCOsPHB0UiU7wFWMAFIbQ7xVey8C1p5Pb_7rRFfXkc9ojrwMptzDaOoOSqUMf53oiMH4LEsN9EQIquhq74E3OD8iRU9COlf_D9OIcKUInRRHnKQFTAokAki3TwcEB4QYIx6b1Pr0zNF9XhxvQD3aqzPoDiYPp-f-mRcuySNZbIcgkgPljdSAAJ7tt6H4SnaxXUhwRGwzS8H6yaVlY_6-47_sMSkc98i'); background-position: 70% 30%; }
+    .char-A  { background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBBFnmfJnSMsRUINODdLH2umIABvYoXWVfEytbz9rNUNKz2hwCrFjl0L6TgeASBjo73OywfFqbbBZibIloP2xFC4I5toyu1JxFsY1YqtfsIVdhGr23OZlsGZ_9L3hOAvP5AbzIVqRaF2Wq1p7pTtBQGuZrDxKS1fLc5awAzGnpFgFmk8h42o7xPNEUvtCaKfR69nL7ASZR7IBZ6mOJaE8S7ZGfLiGD2QyaNE3VxyWa3WvrsTtUm9HmZ'); background-position: 35% 45%; }
+    .char-N2 { background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCWqg96iMQQh7X-sKoVlAVq78hUKiZXHFKabKhF8gvfYDv3H7IdhpJiOUzKRicSi-0rEGfKZViQO8TcvpaOBR2bprWSvRs12RvAuSuadlge-iCiKZX459Qp77-OWgODmkiiJTzNia_Eg_RR6HSqIZlLNsP1nZxr8gHqrxzBcQtEJzRKflFfKWB2xKhasEB2EHzDPymophVSu38mhFP6jfGiFRPsi7tCtDrnBYa7GPpaRWRJymJcvaLu'); background-position: 60% 40%; }
+    .char-C  { background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDTDhW2d6GN252D71gBTWsyNf_mWc47ZBzZjMi_yq5587_bDEO2ySBs9S_mntAb4HnubBvopV8adwc6TcO9euoxQeVTUqw8fRZDbsa_QosGf1zmGX-H71xUFkIHwKkxtYQyZqGM26izpVxgeggXITHXzK4iHqivwyWk3yvZSP5yrItsmM3hVVNF8Am7EeG946AbGk9E5vX4ppPFr5IBf9TTOWG3EZa0-rcdMfxPMOn3prYGSiIuAGOD'); background-position: 40% 50%; }
+    .char-E2 { background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8tJ4NSBnTSEgaWzWkcZuF-bA_W2R4dWklNLcJaQPLn3GqNUd63Vl7a41ApMMNXejjrYrhSPcTdiXbPFeWXuMa-uX9BJPEP2jfD-ACrWUUQaGOHKbkUgIU8A1WleuokGLFz5EAo0XaK_L5Fd7QgVaDZCAF8lakLnUIwPgmByApXRxjYHZY2BdGF-tjumq9byUAC0c6p2Aa0BwZTkL6Kx_Iv-hHaBIXjeoNOsDNIy5_qb-ZF9DtVLgx'); background-position: 50% 35%; }
+
+    /* Subtle stage atmosphere glowing gradient */
+    .stage-glow {
+      background: radial-gradient(circle at 50% 30%, rgba(56, 189, 248, 0.15) 0%, rgba(168, 85, 247, 0.1) 40%, transparent 75%);
+    }
+
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 25s linear infinite;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+  </style>
+</head>
+<body class="bg-[#07070b] text-[#e2e8f0] font-sans antialiased overflow-x-hidden selection:bg-cyan-500 selection:text-black">
+
+  <!-- Ambient lights and subtle stage mist effect -->
+  <div class="fixed inset-0 pointer-events-none stage-glow z-0"></div>
+  <div class="fixed top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+  <div class="fixed top-1/3 right-1/4 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[160px] pointer-events-none"></div>
+
+  <!-- Header / Navigation -->
+  <header class="relative z-20 border-b border-white/5 backdrop-blur-md bg-black/40 sticky top-0">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-400 to-fuchsia-600 flex items-center justify-center font-syne font-black text-black text-xl tracking-tighter">
+          L
+        </div>
+        <div class="flex flex-col">
+          <span class="font-syne font-bold text-lg tracking-wider text-white">LMENT</span>
+          <span class="font-mono text-[10px] text-cyan-400 tracking-widest uppercase">Movement Collective</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#vision" class="hover:text-cyan-400 transition-colors">Concepto</a>
+        <a href="#gallery" class="hover:text-cyan-400 transition-colors">Sesiones</a>
+        <a href="#shows" class="hover:text-cyan-400 transition-colors">Gira 2025</a>
+        <a href="#crew" class="hover:text-cyan-400 transition-colors">Bailarines</a>
+      </nav>
+
+      <div class="flex items-center gap-4">
+        <a href="#tickets" class="px-5 py-2.5 rounded-full text-xs font-mono font-semibold uppercase tracking-wider bg-white/10 hover:bg-cyan-400 hover:text-black border border-white/20 hover:border-cyan-400 transition-all duration-300">
+          Reservar Pase
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section with Distinct Letter Clipping Masks -->
+  <main class="relative z-10">
+    <section class="min-h-[88vh] flex flex-col justify-center relative overflow-hidden py-12 lg:py-16"><div class="max-w-7xl mx-auto px-6 w-full flex flex-col justify-center py-6 lg:py-10 z-10">
+    <!-- Tag / Subtitle -->
+    <div class="mb-6">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/[0.04] border border-white/10 backdrop-blur-md">
+        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+        <span class="text-xs font-mono uppercase tracking-[0.25em] text-slate-300">En Vivo • Movimiento Urbano Experimental</span>
+      </div>
+    </div>
+
+    <!-- Top Hero Row: LMENT DANCE Title (Left) + Dancer Cutout (Right) in the same row/line -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 items-center gap-8 lg:gap-12 mb-8">
+      <!-- Left: Title LMENT DANCE -->
+      <div class="lg:col-span-7 flex flex-col justify-center select-none">
+        <!-- LMENT with photo clipping masks -->
+        <div class="text-6xl sm:text-7xl md:text-8xl lg:text-[7.5rem] leading-[0.88] tracking-tighter flex items-center font-syne font-black">
+          <span class="letter-mask char-L1 cursor-pointer" title="L - Light &amp; Fog">L</span>
+          <span class="letter-mask char-M cursor-pointer" title="M - Floor Release">M</span>
+          <span class="letter-mask char-E cursor-pointer" title="E - Suspended Form">E</span>
+          <span class="letter-mask char-N cursor-pointer" title="N - Silhouette Focus">N</span>
+          <span class="letter-mask char-T cursor-pointer" title="T - Arena Leap">T</span>
+        </div>
+        <!-- DANCE with vibrant neon cyan-to-purple luminous gradient -->
+        <div class="text-5xl sm:text-6xl md:text-7xl lg:text-[6.2rem] leading-[0.9] tracking-tight font-syne font-black mt-2 bg-gradient-to-r from-cyan-400 via-sky-400 to-fuchsia-500 bg-clip-text text-transparent uppercase drop-shadow-[0_0_35px_rgba(56,189,248,0.3)]">
+          DANCE
+        </div>
+      </div>
+
+      <!-- Right: Dancer Cutout Photo -->
+      <div class="lg:col-span-5 relative flex items-center justify-center lg:justify-end">
+        <!-- Radial Neon Glow Backing -->
+        <div class="absolute w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-tr from-cyan-500/30 to-fuchsia-600/30 blur-[100px] pointer-events-none"></div>
+        <div class="relative group flex items-center justify-center">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSI_DpCjZta8thgZS1aRUjQ5ChrztSAingmbi-e5231ke7pK3-tg7sgE0l6BEMZnkgBKiQ6HHyQQSA-fbtKaYDZo_3ZV2vQ8YykGIRviFTvQgDvAnakNlrK08nadnUw5YjfiuWidLDBpU5yg3e8V4PvnWgWF0qc0QTSe6korgQ78GA8FahLQ0hDhNd5d-SV-j4VmyvfKOm05OxtB_2xVTVqLvRFVjcmWhZC3atR58F-NcZyPH9apyF" alt="LMENT Lead Performer" class="max-h-[380px] lg:max-h-[440px] w-auto object-contain drop-shadow-[0_20px_50px_rgba(56,189,248,0.35)] transition-transform duration-700 group-hover:scale-[1.02] filter contrast-105 saturate-110">
+          <!-- Floating Stage Tag -->
+          <div class="absolute bottom-3 left-3 sm:bottom-4 sm:left-4 px-3.5 py-1.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 flex items-center gap-2.5">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            <div>
+              <div class="text-[11px] font-syne font-bold text-white tracking-wider">DIRECTO • EDICIÓN 2025</div>
+              <div class="text-[9px] font-mono text-slate-400 uppercase tracking-wider">Solo Performance Series</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Section Directly Below: Description, CTAs, and Metrics -->
+    <div class="border-t border-white/10 pt-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-8">
+        <div class="lg:col-span-7">
+          <p class="text-slate-400 text-base sm:text-lg font-light leading-relaxed max-w-2xl">
+            Cada letra encarna una captura de la energía escénica. Fusión de danza contemporánea, acrobacia urbana y atmósfera cinematográfica capturada en directo.
+          </p>
+        </div>
+        <!-- CTA Buttons -->
+        <div class="lg:col-span-5 flex flex-wrap items-center lg:justify-end gap-4">
+          <a href="#gallery" class="px-8 py-3.5 rounded-full bg-cyan-400 text-black font-semibold text-sm hover:bg-cyan-300 transition-all duration-300 shadow-lg shadow-cyan-500/25 flex items-center gap-2">
+            <span>Explorar Fotogalería</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </a>
+          <a href="#video-reel" class="px-8 py-3.5 rounded-full bg-white/5 hover:bg-white/10 text-white font-medium text-sm border border-white/10 transition-all duration-300">
+            Ver Showreel
+          </a>
+        </div>
+      </div>
+
+      <!-- Metrics / Stats Bar -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-6 border-t border-white/5">
+        <div>
+          <div class="font-syne font-extrabold text-2xl lg:text-3xl text-white">18.5K+</div>
+          <div class="text-xs font-mono text-slate-400 uppercase tracking-wider mt-1">Espectadores</div>
+        </div>
+        <div>
+          <div class="font-syne font-extrabold text-2xl lg:text-3xl text-cyan-400">12 Países</div>
+          <div class="text-xs font-mono text-slate-400 uppercase tracking-wider mt-1">Gira Int.</div>
+        </div>
+        <div>
+          <div class="font-syne font-extrabold text-2xl lg:text-3xl text-purple-400">100%</div>
+          <div class="text-xs font-mono text-slate-400 uppercase tracking-wider mt-1">Original</div>
+        </div>
+        <div>
+          <div class="font-syne font-extrabold text-2xl lg:text-3xl text-amber-400">5 Tomas</div>
+          <div class="text-xs font-mono text-slate-400 uppercase tracking-wider mt-1">Visuales</div>
+        </div>
+      </div>
+    </div>
+  </div></section>
+
+    <!-- Infinite Marquee Text -->
+    <div class="py-5 bg-white/[0.02] border-y border-white/5 overflow-hidden">
+      <div class="marquee-track flex gap-8 font-syne font-extrabold text-2xl uppercase tracking-widest text-white/30 select-none">
+        <span>RITMO • INTENSIDAD • GRAVEDAD CERO • ESCENARIO VIVO</span>
+        <span>•</span>
+        <span>LMENT DANCE EXPERIENCE</span>
+        <span>•</span>
+        <span>RITMO • INTENSIDAD • GRAVEDAD CERO • ESCENARIO VIVO</span>
+        <span>•</span>
+        <span>LMENT DANCE EXPERIENCE</span>
+      </div>
+    </div>
+
+    <!-- Letter Anatomy / Visual Breakout Section -->
+    <section id="gallery" class="max-w-7xl mx-auto px-6 py-24">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <span class="text-xs font-mono uppercase tracking-[0.2em] text-cyan-400 block mb-2">Desglose de Fotografía</span>
+          <h2 class="text-3xl md:text-5xl font-syne font-bold text-white tracking-tight">
+            Cada Letra, Una Escena
+          </h2>
+        </div>
+        <p class="text-slate-400 max-w-md text-sm">
+          Pasa el cursor sobre cada panel para ver la relación directa entre las tomas capturadas en vivo y las máscaras de recorte de LMENT.
+        </p>
+      </div>
+
+      <!-- Photo Cards Grid using the user's images -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Card 1: IMG_7768 (L) -->
+        <div class="group relative rounded-2xl overflow-hidden bg-[#12121a] border border-white/10 hover:border-cyan-400/50 transition-all duration-500">
+          <div class="aspect-[4/3] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi2dLVG0MpC-KQHpOVJlCOtwCOsPHB0UiU7wFWMAFIbQ7xVey8C1p5Pb_7rRFfXkc9ojrwMptzDaOoOSqUMf53oiMH4LEsN9EQIquhq74E3OD8iRU9COlf_D9OIcKUInRRHnKQFTAokAki3TwcEB4QYIx6b1Pr0zNF9XhxvQD3aqzPoDiYPp-f-mRcuySNZbIcgkgPljdSAAJ7tt6H4SnaxXUhwRGwzS8H6yaVlY_6-47_sMSkc98i" alt="L - Haz de Luz y Humo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+            <div class="absolute top-4 left-4 w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center font-syne font-black text-cyan-400 text-xl">
+              L
+            </div>
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">Acto I • Iluminación Cenital</span>
+            <h3 class="text-xl font-syne font-bold text-white mt-1">Rayos de Escenario &amp; Humo</h3>
+            <p class="text-sm text-slate-400 mt-2">Danza solista entre haces volumétricos que esculpen el contorno del cuerpo en tensión.</p>
+          </div>
+        </div>
+
+        <!-- Card 2: IMG_7760 (M) -->
+        <div class="group relative rounded-2xl overflow-hidden bg-[#12121a] border border-white/10 hover:border-cyan-400/50 transition-all duration-500">
+          <div class="aspect-[4/3] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBFnmfJnSMsRUINODdLH2umIABvYoXWVfEytbz9rNUNKz2hwCrFjl0L6TgeASBjo73OywfFqbbBZibIloP2xFC4I5toyu1JxFsY1YqtfsIVdhGr23OZlsGZ_9L3hOAvP5AbzIVqRaF2Wq1p7pTtBQGuZrDxKS1fLc5awAzGnpFgFmk8h42o7xPNEUvtCaKfR69nL7ASZR7IBZ6mOJaE8S7ZGfLiGD2QyaNE3VxyWa3WvrsTtUm9HmZ" alt="M - Floorwork y Tensión" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+            <div class="absolute top-4 left-4 w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center font-syne font-black text-cyan-400 text-xl">
+              M
+            </div>
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">Acto II • Tensión en Suelo</span>
+            <h3 class="text-xl font-syne font-bold text-white mt-1">Floorwork &amp; Sombras</h3>
+            <p class="text-sm text-slate-400 mt-2">Movimiento de suelo con retroiluminación cian y siluetas periféricas observando el clímax.</p>
+          </div>
+        </div>
+
+        <!-- Card 3: IMG_7757 (E) -->
+        <div class="group relative rounded-2xl overflow-hidden bg-[#12121a] border border-white/10 hover:border-cyan-400/50 transition-all duration-500">
+          <div class="aspect-[4/3] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWqg96iMQQh7X-sKoVlAVq78hUKiZXHFKabKhF8gvfYDv3H7IdhpJiOUzKRicSi-0rEGfKZViQO8TcvpaOBR2bprWSvRs12RvAuSuadlge-iCiKZX459Qp77-OWgODmkiiJTzNia_Eg_RR6HSqIZlLNsP1nZxr8gHqrxzBcQtEJzRKflFfKWB2xKhasEB2EHzDPymophVSu38mhFP6jfGiFRPsi7tCtDrnBYa7GPpaRWRJymJcvaLu" alt="E - Dinámica Vertical" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+            <div class="absolute top-4 left-4 w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center font-syne font-black text-cyan-400 text-xl">
+              E
+            </div>
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">Acto III • Niebla y Espacio</span>
+            <h3 class="text-xl font-syne font-bold text-white mt-1">Suspensión en Gradiente</h3>
+            <p class="text-sm text-slate-400 mt-2">Dispersión atmosférica y contrastes de vestuario streetwear con danza contemporánea.</p>
+          </div>
+        </div>
+
+        <!-- Card 4: IMG_7755 (N) -->
+        <div class="group relative rounded-2xl overflow-hidden bg-[#12121a] border border-white/10 hover:border-cyan-400/50 transition-all duration-500">
+          <div class="aspect-[4/3] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8tJ4NSBnTSEgaWzWkcZuF-bA_W2R4dWklNLcJaQPLn3GqNUd63Vl7a41ApMMNXejjrYrhSPcTdiXbPFeWXuMa-uX9BJPEP2jfD-ACrWUUQaGOHKbkUgIU8A1WleuokGLFz5EAo0XaK_L5Fd7QgVaDZCAF8lakLnUIwPgmByApXRxjYHZY2BdGF-tjumq9byUAC0c6p2Aa0BwZTkL6Kx_Iv-hHaBIXjeoNOsDNIy5_qb-ZF9DtVLgx" alt="N - Perfil en Contraluz" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent"></div>
+            <div class="absolute top-4 left-4 w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center font-syne font-black text-cyan-400 text-xl">
+              N
+            </div>
+          </div>
+          <div class="p-6">
+            <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">Acto IV • Intimidad y Pausa</span>
+            <h3 class="text-xl font-syne font-bold text-white mt-1">Silueta Monocromática</h3>
+            <p class="text-sm text-slate-400 mt-2">La calma antes del impacto acrobático. Iluminación lateral en tonos índigo profundo.</p>
+          </div>
+        </div>
+
+        <!-- Card 5: IMG_6947 (T / DANCE) -->
+        <div class="group relative rounded-2xl overflow-hidden bg-[#12121a] border border-white/10 hover:border-cyan-400/50 transition-all duration-500 md:col-span-2">
+          <div class="aspect-[21/9] overflow-hidden relative">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTDhW2d6GN252D71gBTWsyNf_mWc47ZBzZjMi_yq5587_bDEO2ySBs9S_mntAb4HnubBvopV8adwc6TcO9euoxQeVTUqw8fRZDbsa_QosGf1zmGX-H71xUFkIHwKkxtYQyZqGM26izpVxgeggXITHXzK4iHqivwyWk3yvZSP5yrItsmM3hVVNF8Am7EeG946AbGk9E5vX4ppPFr5IBf9TTOWG3EZa0-rcdMfxPMOn3prYGSiIuAGOD" alt="T - Salto Mortal en Arena" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+            <div class="absolute top-4 left-4 w-10 h-10 rounded-full bg-black/60 backdrop-blur-md border border-white/20 flex items-center justify-center font-syne font-black text-cyan-400 text-xl">
+              T
+            </div>
+          </div>
+          <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest">Acto V • Arena Desbordada</span>
+              <h3 class="text-2xl font-syne font-bold text-white mt-1">Acrobacia Aérea &amp; Estadio</h3>
+              <p class="text-sm text-slate-400 mt-1 max-w-xl">Salto invertido en suspensión total frente a miles de espectadores iluminados por cegadoras doradas.</p>
+            </div>
+            <a href="#tickets" class="px-6 py-2.5 rounded-full bg-white/10 hover:bg-white text-white hover:text-black font-mono text-xs uppercase tracking-wider transition-colors shrink-0">
+              Ver Fechas
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Tour Dates / Interactive Booking Section -->
+    <section id="shows" class="max-w-7xl mx-auto px-6 py-16 border-t border-white/10">
+      <div class="mb-12">
+        <span class="text-xs font-mono uppercase tracking-[0.2em] text-cyan-400 block mb-2">Calendario Oficial</span>
+        <h2 class="text-3xl md:text-4xl font-syne font-bold text-white">LMENT Tour 2025</h2>
+      </div>
+
+      <div class="space-y-4">
+        <!-- Date Row 1 -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-cyan-400/40 hover:bg-white/[0.04] transition-all">
+          <div class="flex items-center gap-6">
+            <span class="font-mono text-cyan-400 text-lg font-bold">14 OCT</span>
+            <div>
+              <h4 class="font-syne font-bold text-xl text-white">Madrid Arena</h4>
+              <p class="text-sm text-slate-400">Madrid, España</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 mt-4 md:mt-0">
+            <span class="text-xs font-mono px-3 py-1 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Últimas Entradas</span>
+            <button class="px-5 py-2 rounded-lg bg-cyan-400 text-black font-semibold text-xs uppercase tracking-wider hover:bg-cyan-300 transition-colors">Comprar</button>
+          </div>
+        </div>
+
+        <!-- Date Row 2 -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-cyan-400/40 hover:bg-white/[0.04] transition-all">
+          <div class="flex items-center gap-6">
+            <span class="font-mono text-cyan-400 text-lg font-bold">22 OCT</span>
+            <div>
+              <h4 class="font-syne font-bold text-xl text-white">Palau Sant Jordi</h4>
+              <p class="text-sm text-slate-400">Barcelona, España</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 mt-4 md:mt-0">
+            <span class="text-xs font-mono px-3 py-1 rounded bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">Disponible</span>
+            <button class="px-5 py-2 rounded-lg bg-cyan-400 text-black font-semibold text-xs uppercase tracking-wider hover:bg-cyan-300 transition-colors">Comprar</button>
+          </div>
+        </div>
+
+        <!-- Date Row 3 -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between p-6 rounded-xl bg-white/[0.02] border border-white/5 hover:border-cyan-400/40 hover:bg-white/[0.04] transition-all">
+          <div class="flex items-center gap-6">
+            <span class="font-mono text-cyan-400 text-lg font-bold">08 NOV</span>
+            <div>
+              <h4 class="font-syne font-bold text-xl text-white">Zenith de Paris</h4>
+              <p class="text-sm text-slate-400">París, Francia</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 mt-4 md:mt-0">
+            <span class="text-xs font-mono px-3 py-1 rounded bg-rose-500/10 text-rose-400 border border-rose-500/20">Sold Out</span>
+            <button class="px-5 py-2 rounded-lg bg-white/10 text-slate-400 font-semibold text-xs uppercase tracking-wider cursor-not-allowed">Lista Espera</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-white/10 bg-black/60 py-12 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <span class="font-syne font-extrabold text-xl tracking-wider text-white">LMENT</span>
+        <span class="text-xs text-slate-500 font-mono">/ DANCE COLLECTIVE 2025</span>
+      </div>
+      <p class="text-xs text-slate-500 font-mono text-center md:text-right">
+        Diseñado con tipografía recortada por imágenes • Todos los derechos reservados.
+      </p>
+    </div>
+  </footer>
+
+
+
+
+
+
+
+</body></html>

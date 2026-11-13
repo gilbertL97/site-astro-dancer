@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Card from '../../components/Card.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Hero from '../../components/Hero.astro';
+import Marquee from '../../components/Marquee.astro';
 import { getLocaleUrl, useTranslations } from '../../i18n/utils';
 
 const t = useTranslations('en');
@@ -19,6 +20,7 @@ const t = useTranslations('en');
     title={t.hero.title}
     subtitle={t.hero.subtitle}
   />
+  <Marquee items={t.marquee} label={t.dances.title} />
   <section aria-labelledby="bio">
     <div class="container">
       <div class="stack">

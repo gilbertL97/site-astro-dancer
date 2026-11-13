@@ -9,7 +9,6 @@ interface Props {
 const { title, text, href, featured = false } = Astro.props;
 ---
 
-<!-- TODO(Diseño): sin uso real hasta que llegue el diseño/contenido. -->
 <article class="card" data-featured={featured}>
   <h3 class="card__title">
     {
@@ -31,7 +30,12 @@ const { title, text, href, featured = false } = Astro.props;
       padding: var(--space-lg);
       background-color: var(--color-bg-muted);
       border: 1px solid var(--color-border);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
+      transition: border-color var(--duration-normal) var(--ease-out);
+    }
+
+    .card:hover {
+      border-color: var(--color-primary);
     }
 
     .card[data-featured='true'] {
