@@ -10,9 +10,9 @@ interface Props {
 const { currentLocale, currentPath } = Astro.props;
 const t = useTranslations(currentLocale);
 
-// Las banderas en un <select> nativo solo pueden ser emoji.
-// El catalán no tiene emoji de bandera estándar: se muestra sin ella.
-const FLAGS: Record<Locale, string> = { es: '🇪🇸', ca: '', en: '🇬🇧' };
+// Iniciales ISO del idioma: funcionan igual en los tres idiomas
+// y evitan el problema de las banderas emoji.
+const CODES: Record<Locale, string> = { es: 'ES', ca: 'CA', en: 'EN' };
 const selectId = 'language-select';
 ---
 
@@ -28,7 +28,7 @@ const selectId = 'language-select';
           selected={locale === currentLocale}
           lang={locale}
         >
-          {(FLAGS[locale] ? `${FLAGS[locale]} ` : '') + t.languageNames[locale]}
+          {CODES[locale]}
         </option>
       ))
     }
