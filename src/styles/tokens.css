@@ -1,8 +1,11 @@
 /* Design tokens. Única fuente de verdad: ningún otro archivo global
    define colores, espacios, tamaños ni tiempos.
+   Paleta «Velvet Night»: #E2CFEA · #A06CD5 · #6247AA · #102B3F · #062726.
+   El violeta puro no llega a 4.5:1 sobre los fondos oscuros (medido: 4.22),
+   así que primario y texto atenuado usan tintes precalculados desde la
+   paleta (verificados ≥4.5 con script de contraste).
    Tema oscuro por defecto (color-scheme: dark light + light-dark());
-   data-theme="light|dark" lo impone. Paleta tecnológica sobre negro,
-   sin magentas fuertes: cian primario, violeta de acento, ámbar puntual. */
+   data-theme="light|dark" lo impone. */
 
 /* Breakpoints documentados (mobile-first, solo cuando clamp()/auto-fit no bastan):
    --bp-sm: 40rem (640px) · --bp-md: 48rem (768px) · --bp-lg: 64rem (1024px) · --bp-xl: 80rem (1280px) */
@@ -75,44 +78,44 @@
   --size-touch: 2.75rem;
 
   /* Color: oscuro por defecto; light-dark() resuelve según color-scheme. */
-  --color-bg: light-dark(#eef1f7, #08080c);
-  --color-bg-muted: light-dark(#fff, #101019);
-  --color-text: light-dark(#14161c, #e9ecf3);
-  --color-text-muted: light-dark(#5a6072, #a3a9bd);
-  --color-primary: light-dark(#0369a1, #38bdf8);
-  --color-on-primary: light-dark(#fff, #04121c);
-  --color-border: light-dark(#d8dce6, #23232f);
-  --color-focus: light-dark(#0284c7, #7dd3fc);
-  --color-accent: light-dark(#7e22ce, #a855f7);
-  --color-highlight: light-dark(#b45309, #f59e0b);
+  --color-bg: light-dark(#e2cfea, #062726);
+  --color-bg-muted: light-dark(#aba5b9, #102b3f);
+  --color-text: light-dark(#062726, #e2cfea);
+  --color-text-muted: light-dark(#102b3f, #a09daf);
+  --color-primary: light-dark(#6247aa, #ac7ed9);
+  --color-on-primary: light-dark(#e2cfea, #062726);
+  --color-border: light-dark(#6247aa, #a06cd5);
+  --color-focus: light-dark(#6247aa, #a06cd5);
+  --color-accent: light-dark(#102b3f, #6247aa);
+  --color-highlight: light-dark(#a06cd5, #a06cd5);
 }
 
 :root[data-theme='light'] {
   color-scheme: light;
 
-  --color-bg: #eef1f7;
-  --color-bg-muted: #fff;
-  --color-text: #14161c;
-  --color-text-muted: #5a6072;
-  --color-primary: #0369a1;
-  --color-on-primary: #fff;
-  --color-border: #d8dce6;
-  --color-focus: #0284c7;
-  --color-accent: #7e22ce;
-  --color-highlight: #b45309;
+  --color-bg: #e2cfea;
+  --color-bg-muted: #aba5b9;
+  --color-text: #062726;
+  --color-text-muted: #102b3f;
+  --color-primary: #6247aa;
+  --color-on-primary: #e2cfea;
+  --color-border: #6247aa;
+  --color-focus: #6247aa;
+  --color-accent: #102b3f;
+  --color-highlight: #a06cd5;
 }
 
 :root[data-theme='dark'] {
   color-scheme: dark;
 
-  --color-bg: #08080c;
-  --color-bg-muted: #101019;
-  --color-text: #e9ecf3;
-  --color-text-muted: #a3a9bd;
-  --color-primary: #38bdf8;
-  --color-on-primary: #04121c;
-  --color-border: #23232f;
-  --color-focus: #7dd3fc;
-  --color-accent: #a855f7;
-  --color-highlight: #f59e0b;
+  --color-bg: #062726;
+  --color-bg-muted: #102b3f;
+  --color-text: #e2cfea;
+  --color-text-muted: #a09daf;
+  --color-primary: #ac7ed9;
+  --color-on-primary: #062726;
+  --color-border: #a06cd5;
+  --color-focus: #a06cd5;
+  --color-accent: #6247aa;
+  --color-highlight: #a06cd5;
 }

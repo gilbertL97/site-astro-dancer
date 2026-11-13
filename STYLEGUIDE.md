@@ -21,12 +21,12 @@ Los estilos globales viven únicamente en `src/styles/`; nada global en componen
 
 ## Tokens (`tokens.css`)
 
-- **Color** (`--color-bg`, `--color-bg-muted`, `--color-text`, `--color-text-muted`,
-  `--color-primary`, `--color-on-primary`, `--color-border`, `--color-focus`,
-  `--color-accent`, `--color-highlight`): semánticos, nunca literales fuera
-  de este archivo. Tema oscuro por defecto (`color-scheme: dark light` con
-  `light-dark()`); `data-theme="light|dark"` lo impone. Sin magentas fuertes:
-  primario cian, acento violeta, ámbar solo puntual.
+- **Color** (paleta «Velvet Night»: `#E2CFEA`, `#A06CD5`, `#6247AA`, `#102B3F`,
+  `#062726`): semánticos, nunca literales fuera de `tokens.css`. El violeta
+  puro no alcanza 4.5:1 sobre oscuro (medido 4.22), así que primario y texto
+  atenuado usan tintes derivados verificados. Tema oscuro por defecto
+  (`color-scheme: dark light` + `light-dark()`); `data-theme="light|dark"`
+  lo impone.
 - **Claro/oscuro**: `color-scheme: light dark` + `light-dark()`: el SO decide por
   defecto. `data-theme="light|dark"` en `<html>` impone un tema manualmente.
 - **Tipo fluida**: `--text-xs` … `--text-5xl` con `clamp()`; interlineados
