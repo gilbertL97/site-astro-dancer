@@ -1,6 +1,12 @@
 # build output
 dist/
 
+# reference material (fotos, mockups, notas) — solo local, no se versiona
+docs/
+
+# knowledge graph (se genera bajo docs/, también local)
+graphify-out/
+
 # generated types
 .astro/
 
