@@ -24,7 +24,8 @@ Los estilos globales viven únicamente en `src/styles/`; nada global en componen
 - **Color** (paleta «Velvet Night»: `#E2CFEA`, `#A06CD5`, `#6247AA`, `#102B3F`,
   `#062726`): semánticos, nunca literales fuera de `tokens.css`. El violeta
   puro no alcanza 4.5:1 sobre oscuro (medido 4.22), así que primario y texto
-  atenuado usan tintes derivados verificados. Tema oscuro por defecto
+  atenuado usan tintes derivados verificados. Bordes en violeta al 45%
+  según el DESIGN.md del mockup. Tema oscuro por defecto
   (`color-scheme: dark light` + `light-dark()`); `data-theme="light|dark"`
   lo impone.
 - **Claro/oscuro**: `color-scheme: light dark` + `light-dark()`: el SO decide por
@@ -32,7 +33,13 @@ Los estilos globales viven únicamente en `src/styles/`; nada global en componen
 - **Tipo fluida**: `--text-xs` … `--text-5xl` con `clamp()`; interlineados
   `--leading-*`; pesos `--font-weight-*`.
 - **Espaciado**: `--space-xs` … `--space-3xl`.
-- **Formas**: `--radius-sm|md|lg|pill`; `--shadow-sm|md|lg`.
+- **Tracking**: `--tracking-tight: -0.02em` (display), `--tracking-wide: 0.08em`
+  (etiquetas mono en mayúsculas).
+- **Formas** (según `docs/mockup-lmen/.../DESIGN.md`, sin curvas burbuja):
+  `--radius-sm` en botones/inputs/badges, `--radius-md` en tarjetas,
+  `--radius-pill` solo en puntos de estado.
+- **Sombras**: sin dropshadows sobre tonos oscuros; `--shadow-glow`
+  (halo violeta) para foco interactivo.
 - **Tiempos**: `--duration-fast|normal|slow` + `--ease-out`.
 - **Z-index con nombre**: `--z-base|sticky|header|overlay|modal|toast|skip`.
 - **Táctil**: `--size-touch: 2.75rem` (44px).

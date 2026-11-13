@@ -16,6 +16,10 @@
   text-wrap: balance;
 }
 
+:where(h1, h2) {
+  letter-spacing: var(--tracking-tight);
+}
+
 :where(h1) {
   font-size: var(--text-4xl);
 }
@@ -45,9 +49,10 @@
 }
 
 :where(a) {
-  color: var(--color-primary);
+  color: var(--color-text);
   text-decoration: underline;
   text-decoration-thickness: 1px;
+  text-decoration-color: var(--color-primary);
   text-underline-offset: 0.2em;
 }
 

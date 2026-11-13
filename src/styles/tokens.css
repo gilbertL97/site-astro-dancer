@@ -42,6 +42,8 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --font-weight-extrabold: 800;
+  --tracking-tight: -0.02em;
+  --tracking-wide: 0.08em;
 
   /* Espaciado. */
   --space-xs: 0.25rem;
@@ -60,6 +62,7 @@
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 12%);
   --shadow-md: 0 4px 12px rgb(0 0 0 / 16%);
   --shadow-lg: 0 12px 32px rgb(0 0 0 / 20%);
+  --shadow-glow: 0 0 16px rgb(160 108 213 / 50%);
 
   /* Movimiento y apilado. */
   --duration-fast: 120ms;
@@ -84,7 +87,7 @@
   --color-text-muted: light-dark(#102b3f, #a09daf);
   --color-primary: light-dark(#6247aa, #ac7ed9);
   --color-on-primary: light-dark(#e2cfea, #062726);
-  --color-border: light-dark(#6247aa, #a06cd5);
+  --color-border: light-dark(#6247aa, #2f3561);
   --color-focus: light-dark(#6247aa, #a06cd5);
   --color-accent: light-dark(#102b3f, #6247aa);
   --color-highlight: light-dark(#a06cd5, #a06cd5);
@@ -114,7 +117,7 @@
   --color-text-muted: #a09daf;
   --color-primary: #ac7ed9;
   --color-on-primary: #062726;
-  --color-border: #a06cd5;
+  --color-border: #2f3561;
   --color-focus: #a06cd5;
   --color-accent: #6247aa;
   --color-highlight: #a06cd5;
